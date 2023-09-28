@@ -1,0 +1,18 @@
+<div *ngFor="let form of forms">
+    <div class="card" (click)="redirectToDynamicForm(form.formId)">
+      <div class="card-header">
+        <h2>{{ form.formName }}</h2>
+      </div>
+      <div class="card-body">
+        <p><strong>Description:</strong> {{ form.description }}</p>
+        <p><strong>Places Available:</strong> {{ form.placesDisp }}</p>
+        <p><strong>Deadline:</strong> {{ form.datelimite | date }}</p>
+        <p><strong>University:</strong> {{ form.university.name }}</p>
+<ul>
+  <li *ngFor="let moyenne of form.moyennes">
+    <strong>Moyenne:</strong> {{ moyenne.moyenne }}
+  </li>
+</ul>
+      </div>
+    </div>
+  </div>
