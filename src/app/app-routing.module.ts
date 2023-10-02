@@ -13,6 +13,7 @@ import { TestComponent } from './test/test.component';
 import { OffresDisponibleComponent } from './offres-disponible/offres-disponible.component';
 import { FormDetailsComponent } from './form-details/form-details.component';
 import { AddUniversityComponent } from './CreateForms/add-university/add-university.component';
+import { SidePageAdminComponent } from './FrontComponents/side-page-admin/side-page-admin.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'offres', component:OffresDisponibleComponent},
   { path: 'form-details/:formName', component: FormDetailsComponent }, 
   {path: 'addUni', component: AddUniversityComponent},
+  {path : 'sideadmin', component:SidePageAdminComponent},
 
 
   { path: '', redirectTo: 'home', pathMatch: 'full' }

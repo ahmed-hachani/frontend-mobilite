@@ -35,6 +35,21 @@
     </ul>
   </div>
    -->
+   <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>DataTables</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">DataTables</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
    <div *ngFor="let formName of getObjectKeys(groupedData)">
     
     <h2><a [routerLink]="['/form-details', formName]">FORM: {{ formName }}</a></h2>
@@ -42,10 +57,11 @@
 
     <div *ngFor="let userEmail of getObjectKeys(groupedData[formName])">
       <h3>User Email: {{ userEmail }}</h3>
-      <table class="table table-striped table-hover">
+      <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+        
         <thead class="table-dark">
-          <tr>
-            <th>Field Name</th>
+          <tr role="row">
+            <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Field Name: activate to sort column descending">Field Name</th>
             <th>Form Data</th>
           </tr>
         </thead>

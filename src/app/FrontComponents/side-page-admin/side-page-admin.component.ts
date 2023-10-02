@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-page-admin.component.css']
 })
 export class SidePageAdminComponent {
+  
 
 }
