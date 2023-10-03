@@ -2,15 +2,43 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div *ngFor="let field of formFields">
-      <div class="nice-form-group">
-      <label>{{ field.fieldLabel }}</label>
-      <input [type]="field.fieldType" [formControlName]="field.fieldName">
+      <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div *ngFor="let field of formFields">
+          <div class="form-group">
+            <label [class.col-form-label]="true"
+                   [class.text-success]="form.get(field.fieldName)?.valid"
+                   [class.text-danger]="form.get(field.fieldName)?.invalid"
+                   [for]="sanitizeLabel(field.fieldLabel)">
+              <i [class]="getIconClass(field.fieldName)"></i>{{ field.fieldLabel }}
+            </label>
+            <input [type]="field.fieldType"
+                   [formControlName]="field.fieldName"
+                   [id]="sanitizeLabel(field.fieldLabel)"
+                   [class.form-control]="true"
+                   [class.is-valid]="form.get(field.fieldName)?.valid"
+                   [class.is-invalid]="form.get(field.fieldName)?.invalid" >
+            <!-- Display validation errors for each field -->
+            <div *ngIf="form.get(field.fieldName)?.invalid && form.get(field.fieldName)?.touched">
+              <div *ngIf="form.get(field.fieldName)?.invalid && form.get(field.fieldName)?.touched">
+                <div *ngIf="form.get(field.fieldName)?.hasError('required')">
+                  Field is required.
+                </div>
+                <div *ngIf="form.get(field.fieldName)?.hasError('email')">
+                  Please enter a valid email address.
+                </div>
+                <div *ngIf="form.get(field.fieldName)?.hasError('pattern')">
+                  Please enter a numeric value.
+                </div>
+                <div *ngIf="form.get(field.fieldName)?.hasError('scoreOutOfRange')">
+                  Score must be a number between 0 and 20.
+                </div>
+                <!-- Add more validation messages as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="form.invalid">Submit</button>
+      </form>
     </div>
   </div>
-    <button type="submit">Submit</button>
-  </form>
-  </div>
-</div>
 </div>

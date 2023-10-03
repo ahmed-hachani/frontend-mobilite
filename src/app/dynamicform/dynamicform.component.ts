@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { DynamicServiceService } from '../_services/api.service';
-import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../_services/storage.service';
 import { switchMap } from 'rxjs/operators';
 import { FormDataDTO } from '../FormDataDTO';
+import { AbstractControl } from '@angular/forms';
+// Define the FormConfig interface
+interface FormConfig {
+  [key: string]: [any, ValidatorFn[]];
+}
+
 
 
 @Component({
@@ -25,27 +30,50 @@ constructor(private formBuilder: FormBuilder, private formModelService: DynamicS
 }
 
 ngOnInit() {
+  
   this.currentUser = this.storageService.getUser();
 
   const formId = this.route.snapshot.params['formId'];
- 
-  
-  this.formModelService.getFormFieldsByFormId(formId).subscribe((formModel) => {
-    if (formModel ) {
-  
-      this.formFields = formModel;
-      this.form = this.formBuilder.group({});
-      this.formFields.forEach((field) => {
-        this.form.addControl(field.fieldName, new FormControl(''));
-        console.log(field.FieldName);
-      });
-      
-      
-    }
-   
-  });
 
 this.getForms();
+this.formModelService.getFormFieldsByFormId(formId).subscribe((fields) => {
+  this.formFields = fields;
+  
+
+  // Initialize the form group and dynamically create form controls
+  const formGroupConfig: FormConfig = {}; // Use the FormConfig interface
+
+  this.formFields.forEach((field) => {
+    const validators: ValidatorFn[] = [Validators.required];
+
+    if (field.fieldName === 'email') {
+      // Add email validation if fieldName is 'email'
+      validators.push(Validators.email);
+    
+  } else if (field.fieldName === 'number') {
+    validators.push(Validators.pattern('^[0-9]*$'));
+  } else if (field.fieldName === 'score') {
+    // Add custom validator for "score" field
+    validators.push(this.scoreValidator());
+  }
+
+    formGroupConfig[field.fieldName] = ['', validators]; // Updated initialization
+  });
+
+  this.form = this.formBuilder.group(formGroupConfig);
+});
+
+
+}
+ // Custom validator for "score" field
+ scoreValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const value = parseFloat(control.value);
+    if (isNaN(value) || value < 0 || value > 20) {
+      return { 'scoreOutOfRange': true };
+    }
+    return null;
+  };
 }
 
 onSubmit() {
@@ -94,4 +122,17 @@ this.formModelService.getForm().subscribe((forms)=>{
   console.log(forms);
   
 });}
+sanitizeLabel(label: string): string {
+  // Remove spaces and other invalid characters from the label
+  return label.replace(/[^a-zA-Z0-9-_]/g, '_');
+}
+getIconClass(fieldName: string): string {
+  console.log(this.form)
+  if (this.form.get(fieldName)?.valid) {
+    return 'fas fa-check'; // Success icon
+  } else if (this.form.get(fieldName)?.invalid) {
+    return 'far fa-times-circle'; // Error icon
+  } else {
+    return ''; // Default icon class for other cases
+  }}
 }

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../_services/user.service';
 import { DynamicServiceService } from '../../_services/api.service';
-import { Form } from '../../interfaces/Form';
-import { UserFormDataGroup } from '../../interfaces/UserFormDataGroup ';
-import { MyFormData } from '../../interfaces/myFormData';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'; // Import map from rxjs/operators
 import {Router} from '@angular/router';
 
 
