@@ -1,4 +1,4 @@
-<div *ngFor="let form of forms">
+<!-- <div *ngFor="let form of forms">
     <div class="card" (click)="redirectToDynamicForm(form.formId)">
       <div class="card-header">
         <h2>{{ form.formName }}</h2>
@@ -15,4 +15,61 @@
 </ul>
       </div>
     </div>
+  </div> -->
+  <div class="content-wrapper" style="min-height: 593.4px;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0"> Offres de mobilités <small>Esprit</small></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+             
+              <li class="breadcrumb-item active">Offres de mobilités</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12" *ngFor="let form of forms">
+            
+
+            <div class="card card-primary card-outline">
+              <div class="card-body">
+                <h3 class="card-title"><strong>{{ form.formName }}</strong></h3>
+
+                <p class="card-text">
+                  <strong>Description:</strong> {{ form.description }}
+                </p>
+                <p class="card-text">
+                  <strong>Places Available:</strong> {{ form.placesDisp }}
+                </p>
+                <p class="card-text">
+                  <strong>Deadline:</strong> {{ form.datelimite | date }}
+                </p>
+                <p class="card-text">
+                  <strong>University:</strong> {{ form.university.name }}
+                </p>
+                
+                <a  class="card-link" (click)="redirectToDynamicForm(form.formId)">Apply to this offer</a>
+                
+              </div>
+            </div><!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+          
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
   </div>

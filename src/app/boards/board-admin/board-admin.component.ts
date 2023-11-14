@@ -12,6 +12,8 @@ import {Router} from '@angular/router';
 })
 export class BoardAdminComponent implements OnInit {
   formDataList$!: Observable<any[]>;  
+  displayedLabels: Set<string> = new Set();
+  displayedUserEmails: Set<string> = new Set();
   formId!: number;
   groupedData: any = {}; // Initialize groupedData as an empty object
   formPlacesDisp: { [formName: string]: number } = {}; // Initialize formPlacesDisp object
@@ -87,6 +89,21 @@ export class BoardAdminComponent implements OnInit {
   // Define a getter method to get keys of an object
   getObjectKeys(obj: any): string[] {
     return Object.keys(obj);
+  }
+  isLabelDisplayed(label: string): boolean {
+    if (!this.displayedLabels.has(label)) {
+      this.displayedLabels.add(label);
+      return true;
+    }
+    return false;
+  }
+  isFirstRow(userEmail: string): boolean {
+    if (!this.displayedUserEmails.has(userEmail)) {
+      this.displayedUserEmails.add(userEmail);
+      console.log(this.displayedUserEmails);
+      return false;
+    }
+    return true;
   }
     
   // redirectToFormDetails(formName: any): void {

@@ -14,6 +14,8 @@ import { OffresDisponibleComponent } from './offres-disponible/offres-disponible
 import { FormDetailsComponent } from './form-details/form-details.component';
 import { AddUniversityComponent } from './CreateForms/add-university/add-university.component';
 import { SidePageAdminComponent } from './FrontComponents/side-page-admin/side-page-admin.component';
+import { AddFormComponent } from './CreateForms/add-form/add-form.component';
+import { FormfieldsComponent } from './CreateForms/formfields/formfields.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,6 +32,8 @@ const routes: Routes = [
   { path: 'form-details/:formName', component: FormDetailsComponent }, 
   {path: 'addUni', component: AddUniversityComponent},
   {path : 'sideadmin', component:SidePageAdminComponent},
+  {path: 'addForm', component:AddFormComponent},
+  {path :'addFormField', component: FormfieldsComponent},
 
 
   { path: '', redirectTo: 'home', pathMatch: 'full' }

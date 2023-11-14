@@ -1,11 +1,88 @@
-<form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="university.name" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="location">Location:</label>
+<app-side-page-admin></app-side-page-admin>
+  <div class="content-wrapper" style="min-height: 500.6px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add University </h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add University</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Please fill this form with accurate information</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form  (ngSubmit)="onSubmit()" #universityForm="ngForm">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="university.name" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="location">Location:</label>
       <input type="text" id="location" name="location" [(ngModel)]="university.location" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Create University</button>
-  </form>
+                  </div>
+                  
+                 
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      
+                      <th>Name</th>
+                      <th>Location</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let university of universities">
+                      
+                      <td>{{ university.name }}</td>
+                      <td>{{ university.location }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.card -->
+
+            <!-- general form elements -->
+            
+           
+
+            
+            
+
+          </div>
+         
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+ 

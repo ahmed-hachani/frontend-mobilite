@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './FrontComponents/navbar/navbar.component';
 import { HeroComponent } from './FrontComponents/hero/hero.component';
-import { FormComponent } from './form/form.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutusComponent } from './FrontComponents/aboutus/aboutus.component';
@@ -25,7 +24,9 @@ import { DynamicSelectComponent } from './inputTypes/dynamic-select/dynamic-sele
 import { OffresDisponibleComponent } from './offres-disponible/offres-disponible.component';
 import { FormDetailsComponent } from './form-details/form-details.component';
 import { AddUniversityComponent } from './CreateForms/add-university/add-university.component';
-
+import { AddFormComponent } from './CreateForms/add-form/add-form.component';
+import { FormComponent } from './form/form.component';
+import { FormfieldsComponent } from './CreateForms/formfields/formfields.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { AddUniversityComponent } from './CreateForms/add-university/add-univers
     OffresDisponibleComponent,
     FormDetailsComponent,
     AddUniversityComponent,
+    AddFormComponent,
+    FormfieldsComponent,
     
   
   ],

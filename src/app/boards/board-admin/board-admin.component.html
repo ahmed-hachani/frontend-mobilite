@@ -63,30 +63,29 @@
       <!-- /.card-header -->
 
       <div *ngFor="let userEmail of getObjectKeys(groupedData[formName])">
-        
-        <!-- //<h1 class="header-1">User Email: {{ userEmail }}</h1> -->
-        <div class="card-body table-responsive p-0">
-          <table class="table table-hover text-nowrap">
-            <thead>
-              <tr>
-                <th *ngFor="let formData of groupedData[formName][userEmail]">
-                  {{ formData.field.fieldName }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr >
-                <ng-container *ngFor="let formData of groupedData[formName][userEmail]">
-                  <td>{{ formData.value }}</td>
-                </ng-container>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        
-        
-      </div>
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+      <thead>
+        <tr>
+          <!-- Display the table headers only for the first row -->
+          <ng-container *ngIf="isFirstRow(userEmail)">
+            <th *ngFor="let formData of groupedData[formName][userEmail]">
+              {{ formData.field.fieldLabel }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <ng-container *ngFor="let formData of groupedData[formName][userEmail]">
+            <td>{{ formData.value }}</td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
     </div>
   </div>
 </div>

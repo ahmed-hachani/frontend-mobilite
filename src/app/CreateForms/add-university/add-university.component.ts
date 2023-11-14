@@ -48,6 +48,7 @@ export class AddUniversityComponent implements OnInit {
     this.universityService.addUniversity(this.university).subscribe(
       (response) => {
         console.log('University created successfully:', response);
+        this.universities.push(response); // Add the newly created university to the list
         // Reset the form after successful submission
         this.university = { name: '', location: '' };
       },

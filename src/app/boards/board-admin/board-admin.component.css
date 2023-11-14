@@ -4,7 +4,7 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: "Asap", sans-serif;
-  background-color: #fdfdfe;
+  background-color: #007bff;
 }
 *{
   box-sizing: border-box;
@@ -35,3 +35,21 @@ header .header-2{
 header .header-3{
   background-image: repeating-radial-gradient(circle farthest-side at 5px 10px,#553c9a 10%, #ee4b2b 30%, #553c9a);
 }
+
+
+/* Define the alpha blue color */
+:root {
+  --alpha-blue: #007bff; /* Change this to your preferred alpha blue color */
+}
+
+/* Apply the alpha blue color to specific elements */
+.jumbotron {
+  background-color: var(--alpha-blue);
+  color: white; /* Text color on alpha blue background */
+}
+
+.breadcrumb-item.active {
+  color: var(--alpha-blue); /* Active breadcrumb text color */
+}
+
+/* Modify other elements as needed */

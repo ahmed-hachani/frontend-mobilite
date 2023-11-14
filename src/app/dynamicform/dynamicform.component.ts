@@ -133,6 +133,6 @@ getIconClass(fieldName: string): string {
   } else if (this.form.get(fieldName)?.invalid) {
     return 'far fa-times-circle'; // Error icon
   } else {
-    return ''; // Default icon class for other cases
+    return 'fas fa-question-circle text-muted'; // Default icon class for other cases
   }}
 }
