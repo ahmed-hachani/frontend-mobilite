@@ -27,7 +27,11 @@ import { AddUniversityComponent } from './CreateForms/add-university/add-univers
 import { AddFormComponent } from './CreateForms/add-form/add-form.component';
 import { FormComponent } from './form/form.component';
 import { FormfieldsComponent } from './CreateForms/formfields/formfields.component';
-
+import { RegisterComponent } from './register/register.component';
+import { FormFieldManagerComponent } from './form-field-manager/form-field-manager.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { FormListComponent } from './form-list/form-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +57,9 @@ import { FormfieldsComponent } from './CreateForms/formfields/formfields.compone
     AddUniversityComponent,
     AddFormComponent,
     FormfieldsComponent,
+    RegisterComponent,
+    FormFieldManagerComponent,
+    
     
   
   ],
@@ -61,7 +68,9 @@ import { FormfieldsComponent } from './CreateForms/formfields/formfields.compone
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatTableModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -71,4 +73,10 @@ getUniversities(): Observable<any[]> {
   const url = `${this.apiUrl}/getUniversities`;
   return this.http.get<any[]>(url);
 }
+getTest():Observable<any[]>{
+  return this.http.get<any>(this.PATH_OF_API+'/getForms')
+}
+deleteForm(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.PATH_OF_API}/deleteForm/${id}`);
+  }
 }

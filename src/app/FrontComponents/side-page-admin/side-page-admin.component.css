@@ -1,0 +1,33 @@
+.main-sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: #222;
+  color: #fff;
+  z-index: 1000;
+  overflow-y: auto;
+}
+.sidebar {
+  height: 100%;
+  padding-bottom: 40px;
+}
+.nav-sidebar .nav-link {
+  color: #fff;
+}
+.nav-sidebar .nav-link.active, .nav-sidebar .nav-link:hover {
+  background: #444;
+  color: #fff;
+}
+.brand-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #1a1a1a;
+}
+.brand-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}

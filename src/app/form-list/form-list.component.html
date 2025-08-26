@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span class="toolbar-title">Forms List</span>
+      <span class="spacer"></span>
+      <button mat-flat-button color="primary" (click)="addForm()">
+        <mat-icon>add</mat-icon> Add New Form
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="mat-elevation-z2 form-table-container">
+    <div class="loading-overlay" *ngIf="loading">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
+    <div *ngIf="dataSource.data.length === 0 && !loading" class="empty-state">
+      <p>No forms found. Click "Add New Form" to get started.</p>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="full-width-table">
+      <ng-container matColumnDef="formId">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let form"> {{form.formId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="formName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let form"> {{form.formName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let form" class="action-buttons">
+          <button mat-icon-button color="primary" (click)="updateForm(form.formId)" aria-label="Update form">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteForm(form.formId)" aria-label="Delete form">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+</div>

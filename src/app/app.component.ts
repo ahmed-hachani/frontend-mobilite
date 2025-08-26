@@ -37,4 +37,7 @@ export class AppComponent {
     window.location.reload();
   }
 
+  isAuthRoute(): boolean {
+    return this.router.url === '/login' || this.router.url === '/register';
+  }
 }

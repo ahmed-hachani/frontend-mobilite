@@ -16,6 +16,9 @@ import { AddUniversityComponent } from './CreateForms/add-university/add-univers
 import { SidePageAdminComponent } from './FrontComponents/side-page-admin/side-page-admin.component';
 import { AddFormComponent } from './CreateForms/add-form/add-form.component';
 import { FormfieldsComponent } from './CreateForms/formfields/formfields.component';
+import { RegisterComponent } from './register/register.component';
+import { FormFieldManagerComponent } from './form-field-manager/form-field-manager.component';
+import { FormListComponent } from './form-list/form-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,6 +37,10 @@ const routes: Routes = [
   {path : 'sideadmin', component:SidePageAdminComponent},
   {path: 'addForm', component:AddFormComponent},
   {path :'addFormField', component: FormfieldsComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'form-field-manager', component: FormFieldManagerComponent },
+  { path: 'form-list', component: FormListComponent },
+
 
 
   { path: '', redirectTo: 'home', pathMatch: 'full' }

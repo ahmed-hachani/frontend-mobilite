@@ -1,0 +1,81 @@
+.container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mat-toolbar {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--mat-toolbar-text-color);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.form-table-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mat-cell {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.action-buttons {
+  text-align: right;
+  padding-right: 16px;
+}
+
+.mat-icon-button {
+  margin: 0 4px;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+.error-message {
+  margin-top: 16px;
+  color: var(--mat-warn-color);
+  font-weight: 500;
+  text-align: center;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: rgba(0, 0, 0, 0.54);
+}

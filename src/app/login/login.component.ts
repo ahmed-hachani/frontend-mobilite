@@ -1,61 +1,58 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserAuthService } from '../_services/user-auth.service';
-import { UserService } from '../_services/user.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { AuthUserService } from '../_services/auth-user.service';
 import { StorageService } from '../_services/storage.service';
+import { Router } from '@angular/router';
+import { LoginRequestDTO } from '../dto/LoginRequestDTO';
+import { LoginResponseDTO } from '../dto/LoginResponseDTO';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  constructor(private storageService:StorageService, private userService: UserService, private userAuthService :UserAuthService,private router: Router,private http: HttpClient){
-    
-  }
+
+  constructor(
+    private storageService: StorageService,
+    private authUserService: AuthUserService,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
     }
   }
-  login(loginForm: NgForm): void{
-    if (true){
-    this.userService.login(loginForm.value).subscribe(
-      (response:any)=>{
-         
+
+  login(loginForm: NgForm): void {
+    const loginData: LoginRequestDTO = {
+      username: loginForm.value.username,
+      password: loginForm.value.password
+    };
+
+    this.authUserService.login(loginData).subscribe({
+      next: (response: LoginResponseDTO) => {
         this.storageService.saveUser(response);
-        this.userAuthService.setRoles(response.roles);
-        console.log(response);  
-        this.userAuthService.setToken(response.token);
+        this.storageService.saveToken(response.jwt);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-          this.reloadPage();
-        const role = response.roles[0];
-        console.log(role);
-        //const role = response.user.role[0].roleName;
+        this.roles = response.roles;
         this.router.navigate(['/home']);
-        // if (role === 'ADMIN') {
-        //   this.router.navigate(['/admin']);
-        // } else {
-        //   this.router.navigate(['/user']);
-        // }
       },
-      (error)=>{
+      error: (error) => {
+        this.isLoginFailed = true;
+        this.errorMessage = 'Login failed. Please check your credentials.';
         console.log(error);
       }
-    );}
-    else alert('Please complete the reCAPTCHA');
+    });
   }
-  reloadPage(): void {
-    window.location.reload();
-  }
-
 }
+  
+
+

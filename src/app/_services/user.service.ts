@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   PATH_OF_API = 'http://localhost:8090';
+  PATH_OF_API_AUTH = 'http://localhost:8885/mobility';
+
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
    httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,24 +24,24 @@ export class UserService {
   }
   
   public forAdmin() {
-    return this.httpclient.get(this.PATH_OF_API + '/api/test/forAdmin', {
+    return this.httpclient.get(this.PATH_OF_API_AUTH + '/api/test/forAdmin', {
       responseType: 'text',
       headers: new HttpHeaders({ 'Authorization': 'Bearer '+this.userAuthService.getToken() })
     });
   }
   public forCandidat() {
-    return this.httpclient.get(this.PATH_OF_API + '/api/test/forCandidat', {
+    return this.httpclient.get(this.PATH_OF_API_AUTH + '/api/test/forCandidat', {
       responseType: 'text',
       headers: new HttpHeaders({ 'Authorization': 'Bearer '+this.userAuthService.getToken() })
     });
   }
   public forUniversity() {
-    return this.httpclient.get(this.PATH_OF_API + '/forUniversity', {
+    return this.httpclient.get(this.PATH_OF_API_AUTH + '/forUniversity', {
       responseType: 'text',
     });
   }
   getPublicContent(): Observable<any> {
-    return this.httpclient.get(this.PATH_OF_API + '/api/test/all', { responseType: 'text',
+    return this.httpclient.get(this.PATH_OF_API_AUTH + '/api/test/all', { responseType: 'text',
     headers: new HttpHeaders({ 'Authorization': 'Bearer '+this.userAuthService.getToken() })
   });
   }
